@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-
 import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.LayerObject;
 import me.kimundi.jtmx.MetaLayer;
@@ -24,7 +22,6 @@ import me.kimundi.jtmx.TilesetTile;
 import me.kimundi.jtmx.io.JTMXParseException;
 import me.kimundi.jtmx.io.JTMXParser;
 import me.kimundi.util.IntPoint;
-import me.kimundi.util.Properties;
 
 public class TMXDebugPrinter {
 	private final static String IN = "  ";

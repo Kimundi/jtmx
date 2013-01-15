@@ -1,14 +1,10 @@
 package me.kimundi.jtmx;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-
 import me.kimundi.util.ImmutableProperties;
-import me.kimundi.util.Properties;
 
 public class MetaLayer {
 	private final ImmutableList<TiledMapRef> maps;

@@ -1,18 +1,10 @@
 package me.kimundi.jtmx;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.google.common.collect.ImmutableMap;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import me.kimundi.util.DataCache;
 import me.kimundi.util.ImmutableProperties;
-import me.kimundi.util.Properties;
 import me.kimundi.util.RGBColor;
 import me.kimundi.util.Utils;
 

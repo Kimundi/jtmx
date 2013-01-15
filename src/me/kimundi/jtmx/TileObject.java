@@ -2,8 +2,6 @@ package me.kimundi.jtmx;
 
 import java.util.Map;
 
-import me.kimundi.util.Properties;
-
 public class TileObject extends LayerObject {
 	private final int gid;
 

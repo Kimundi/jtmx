@@ -1,17 +1,9 @@
 package me.kimundi.jtmx;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-
-import me.kimundi.util.BackingFile;
 import me.kimundi.util.ImmutableProperties;
-import me.kimundi.util.Properties;
 
 public class MetaMap {
 	private final MapVersion version;

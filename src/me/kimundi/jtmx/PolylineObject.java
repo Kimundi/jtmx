@@ -1,12 +1,9 @@
 package me.kimundi.jtmx;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import me.kimundi.util.IntPoint;
-import me.kimundi.util.Properties;
-
 import com.google.common.collect.ImmutableList;
 
 public class PolylineObject extends LayerObject {

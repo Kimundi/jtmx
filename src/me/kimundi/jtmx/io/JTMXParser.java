@@ -7,24 +7,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
-import javax.management.modelmbean.XMLParseException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.LayerObject;
-import me.kimundi.jtmx.LayerTypes;
 import me.kimundi.jtmx.MapOrientation;
 import me.kimundi.jtmx.MapVersion;
 import me.kimundi.jtmx.MetaLayer;
@@ -53,8 +48,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import com.google.common.collect.ImmutableMap;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 

@@ -3,20 +3,11 @@ package me.kimundi.jtmx.renderer;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.TiledMap;
 import me.kimundi.jtmx.TileFlip;
-import me.kimundi.jtmx.io.JTMXParseException;
-import me.kimundi.jtmx.testing.TMXDebugPrinter;
-import me.kimundi.jtmx.testing.TMXDebugRender;
 
 public class GraphicsTarget implements TileDrawTarget {
 	private Graphics2D g;

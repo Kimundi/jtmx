@@ -1,13 +1,9 @@
 package me.kimundi.jtmx.renderer;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.imageio.ImageIO;
 
 import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.TiledMap;
@@ -15,8 +11,6 @@ import me.kimundi.jtmx.TileFlip;
 import me.kimundi.jtmx.TileLayer;
 import me.kimundi.jtmx.Tileset;
 import me.kimundi.jtmx.TilesetRef;
-import me.kimundi.jtmx.io.JTMXParseException;
-import me.kimundi.jtmx.testing.TMXDebugRender;
 
 public class TMXRenderer {
 	private TiledMap map;

@@ -1,13 +1,11 @@
 package me.kimundi.jtmx;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import me.kimundi.util.RGBColor;
 
 import com.google.common.collect.ImmutableList;
-import com.sun.org.apache.bcel.internal.generic.CASTORE;
 
 public class ObjectLayer extends Layer {
 	protected final RGBColor color;

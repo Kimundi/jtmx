@@ -1,7 +1,5 @@
 package me.kimundi.jtmx.io;
 
-import java.text.ParseException;
-
 import me.kimundi.util.FormatedDataReadException;
 
 public class JTMXParseException extends FormatedDataReadException {

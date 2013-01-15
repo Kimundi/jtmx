@@ -3,7 +3,6 @@ package me.kimundi.jtmx;
 import java.util.Map;
 
 import me.kimundi.util.ImmutableProperties;
-import me.kimundi.util.Properties;
 
 public abstract class LayerObject {
 	protected final String name;

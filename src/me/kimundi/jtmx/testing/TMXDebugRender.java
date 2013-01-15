@@ -1,23 +1,16 @@
 package me.kimundi.jtmx.testing;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.TiledMap;
-import me.kimundi.jtmx.TileFlip;
 import me.kimundi.jtmx.io.JTMXParseException;
 import me.kimundi.jtmx.io.JTMXParser;
 import me.kimundi.jtmx.renderer.GraphicsTarget;
 import me.kimundi.jtmx.renderer.TMXRenderer;
-import me.kimundi.jtmx.renderer.TileDrawTarget;
 
 public class TMXDebugRender {
 

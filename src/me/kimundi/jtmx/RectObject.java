@@ -2,8 +2,6 @@ package me.kimundi.jtmx;
 
 import java.util.Map;
 
-import me.kimundi.util.Properties;
-
 public class RectObject extends LayerObject {
 	private final int width;
 	private final int height;

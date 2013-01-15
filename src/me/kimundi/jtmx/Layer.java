@@ -2,10 +2,7 @@ package me.kimundi.jtmx;
 
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
-
 import me.kimundi.util.ImmutableProperties;
-import me.kimundi.util.Properties;
 
 public abstract class Layer {
 	protected final String name;

@@ -1,11 +1,5 @@
 package me.kimundi.jtmx;
 
-import java.io.File;
-import java.io.IOException;
-
-import me.kimundi.util.BackingFile;
-import me.kimundi.util.DataCache;
-
 public class TiledMapRef {
 	private final int x;
 	private final int y;

@@ -3,7 +3,6 @@ package me.kimundi.jtmx;
 import java.util.Map;
 
 import me.kimundi.util.ImmutableProperties;
-import me.kimundi.util.Properties;
 
 public class TilesetTile {
 	private final ImmutableProperties properties;
