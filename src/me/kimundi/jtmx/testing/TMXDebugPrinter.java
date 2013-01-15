@@ -29,10 +29,10 @@ public class TMXDebugPrinter {
 	public static void main(String[] args) throws JTMXParseException, IOException{ 
 		JTMXParser tmxparser = new JTMXParser();
 		
-		//printOutTSX(tmxparser, "assets/map/Tilesets/data.tsx");
-		//printOutTMX(tmxparser, "assets/map/Testmap3.tmx");
-		//printOutTMX(tmxparser, "assets/map/Testmap3.tmx");
-		printOutMTMX(tmxparser, "assets/map/World.mtmx");
+		printOutTSX(tmxparser, "etc/buildings.tsx");
+
+		printOutTMX(tmxparser, "etc/isomap.tmx");
+		printOutTMX(tmxparser, "etc/orthomap.tmx");
 		
 	}
 	
