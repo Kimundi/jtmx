@@ -330,8 +330,8 @@ public class JTMXParser {
 			Node objectnode = objectnodes.item(j);
 			Properties objectProperties = extractProperties(objectnode);
 			Properties objectAttributes = extractAttributes(objectnode);
-			int x = prop2uint(objectAttributes, "x");
-			int y = prop2uint(objectAttributes, "y");
+			int x = prop2int(objectAttributes, "x");
+			int y = prop2int(objectAttributes, "y");
 			
 			boolean objectvisible = prop2uint(
 					objectAttributes, "visible", 1) != 0;
@@ -373,8 +373,11 @@ public class JTMXParser {
 						objectvisible, objectProperties, width, height);
 				
 			} else {
-				throw new JTMXParseException(
-						"Found unidentifyable object type!");
+				obj = new RectObject(objectname, objecttype, x, y, 
+						objectvisible, objectProperties, 0, 0);
+
+				System.out.println("Found unknown Object type, parsing as " +
+						"0-Dimensional RectObject");
 			}
 			objects.add(obj);
 		}
