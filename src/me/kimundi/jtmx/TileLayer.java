@@ -21,17 +21,20 @@ public class TileLayer extends Layer {
 		return data.clone();
 	}
 	
-	private static int access(int[] data, int x, int y, int width) {
+	private static int access(int[] data, int x, int y, int width, int height) {
 		return data[x + width * y];
 	}
 	
 	public int getGid(int x, int y) {
-		return getGid(data, x, y, width);
+		return getGid(data, x, y, width, height);
 	}
 
-	public static int getGid(int[] data, int x, int y, int width) {
-		// Maybe TODO validate input (range etc)
-		long t = access(data, x, y, width);
+	public static int getGid(int[] data, int x, int y, int width, int height) {
+		if (x < 0 || width <= x || y < 0 || height <= y) {
+			throw new IllegalArgumentException("(x, y) lies outside the " +
+					"range denoted by width and height");
+		}
+		long t = access(data, x, y, width, height);
 		t = maskFlipBits(t);
 		return (int)t;
 	}	
@@ -40,13 +43,13 @@ public class TileLayer extends Layer {
 		return (int)maskFlipBits(item);
 	}
 	
-	public static Tile getTile(int[] data, int x, int y, int width) {
-		long item = access(data, x, y, width);
+	public static Tile getTile(int[] data, int x, int y, int width, int height) {
+		long item = access(data, x, y, width, height);
 		return new Tile(getFlipRaw(item), getGidRaw(item));
 	}
 	
 	public Tile getTile(int x, int y) {
-		return getTile(data, x, y, width);
+		return getTile(data, x, y, width, height);
 	}
 	
 	// TODO: Optimize to bit-maggioc switch statement
@@ -59,7 +62,7 @@ public class TileLayer extends Layer {
 	}
 	
 	public TileFlip getFlip(int x, int y) {
-		return getFlip(data, x, y, width);
+		return getFlip(data, x, y, width, height);
 	}
 	
 	private static TileFlip getFlipRaw(long item) {
@@ -82,8 +85,8 @@ public class TileLayer extends Layer {
 			return TileFlip.NONE;
 	}
 	
-	public static TileFlip getFlip(int[] data, int x, int y, int width) {
-		long t = access(data, x, y, width);
+	public static TileFlip getFlip(int[] data, int x, int y, int width, int height) {
+		long t = access(data, x, y, width, height);
 		return getFlipRaw(t);
 	}
 

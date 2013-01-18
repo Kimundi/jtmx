@@ -22,14 +22,14 @@ public class TMXRenderer {
 		return map;
 	}
 
-	public TMXRenderer(TiledMap map) throws IOException {
+	public TMXRenderer(TiledMap map) {
 		this.map = map;
 		this.layers = map.getLayers();
 		this.tilesets = map.getTilesets();
 		prepare();
 	}
 
-	private void prepare() throws IOException {
+	private void prepare() {
 		int gidsize = 0;
 		for (int gid : tilesets.keySet()) {
 			TilesetRef ts = tilesets.get(gid);
@@ -44,7 +44,7 @@ public class TMXRenderer {
 	}
 
 	private void loadTiles(BufferedImage[] tileimages, int gid,
-			TilesetRef tilesetref) throws IOException {
+			TilesetRef tilesetref) {
 		BufferedImage image = tilesetref.getTileset().getImage();
 
 		Tileset tileset = tilesetref.getTileset();
