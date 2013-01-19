@@ -38,8 +38,7 @@ public class TMXDebugRender {
 		TiledMap map = tmxparser.parseTMX(tmxpath);
 		
 		TMXRenderer renderer = new TMXRenderer(map);
-		BufferedImage fullMapRender = GraphicsTarget.createEmptyMapImage(
-				renderer);
+		BufferedImage fullMapRender = GraphicsTarget.createEmptyMapImage(map);
 		GraphicsTarget g = new GraphicsTarget(fullMapRender.createGraphics());
 		
 		

@@ -83,16 +83,6 @@ public class TMXRenderer {
 
 	}
 
-	public void renderLayer(Layer layer, TileDrawTarget target,
-			boolean applyOpacity) {
-		if (layers.contains(layer)) {
-			renderLayer(layers.indexOf(layer), target, applyOpacity);
-		} else {
-			throw new IllegalArgumentException(
-					"Can only draw layers of the prior given map");
-		}
-	}
-
 	public void renderLayer(int index, TileDrawTarget target,
 			boolean applyOpacity) {
 		Layer layer = layers.get(index);

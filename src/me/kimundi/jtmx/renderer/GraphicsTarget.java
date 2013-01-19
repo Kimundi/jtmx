@@ -58,7 +58,7 @@ public class GraphicsTarget implements TileDrawTarget {
 	
 	public static BufferedImage createLayerRender(
 			TMXRenderer renderer, int layerindex, boolean applyOpacity) {
-		BufferedImage image = createEmptyMapImage(renderer);
+		BufferedImage image = createEmptyMapImage(renderer.getMap());
 		Graphics2D g = image.createGraphics();
 
 		g.setColor(     new Color(0, 0, 0, 0));
@@ -75,7 +75,7 @@ public class GraphicsTarget implements TileDrawTarget {
 
 	public static BufferedImage createTileRender(
 			TMXRenderer renderer, int tileIndex, TileFlip flip) {
-		BufferedImage image = createEmptyTileImage(renderer);
+		BufferedImage image = createEmptyTileImage(renderer.getMap());
 		Graphics2D g = image.createGraphics();
 
 		g.setColor(     new Color(0, 0, 0, 0));
@@ -88,17 +88,15 @@ public class GraphicsTarget implements TileDrawTarget {
 		return image;
 	}
 	
-	public static BufferedImage createEmptyMapImage(TMXRenderer renderer) {
-		TiledMap map = renderer.getMap();
+	public static BufferedImage createEmptyMapImage(TiledMap map) {
 		return createEmptyImage(map.getWidthInPixel(), map.getHeightInPixel());
 	}
 	
-	public static BufferedImage createEmptyTileImage(TMXRenderer renderer) {
-		TiledMap map = renderer.getMap();
+	public static BufferedImage createEmptyTileImage(TiledMap map) {
 		return createEmptyImage(map.getTileWidth(), map.getTileHeight());
 	}
 	
-	private static BufferedImage createEmptyImage(int width, int height) {
+	public static BufferedImage createEmptyImage(int width, int height) {
 		BufferedImage image = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
 		return image;
