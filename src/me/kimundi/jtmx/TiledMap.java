@@ -52,7 +52,7 @@ public class TiledMap {
 		return width;
 	}
 	
-	public int getWidthInPixel() {
+	public int getPixelWidth() {
 		return width * tilewidth;
 	}
 
@@ -60,7 +60,7 @@ public class TiledMap {
 		return height;
 	}
 	
-	public int getHeightInPixel() {
+	public int getPixelHeight() {
 		return height * tileheight;
 	}
 

@@ -11,7 +11,7 @@ import me.kimundi.jtmx.TileFlip;
 
 public class GraphicsTarget implements TileDrawTarget {
 	private Graphics2D g;
-	private Composite comp = null;;
+	private Composite comp;
 	private float alpha;
 	
 	public GraphicsTarget(Graphics2D g) {
@@ -20,7 +20,12 @@ public class GraphicsTarget implements TileDrawTarget {
 	}
 
 	@Override
-	public void drawTile(int x, int y, BufferedImage tile, TileFlip flippstate) {
+	public void drawTile(int x, int y, BufferedImage tile, TileFlip flippstate, 
+			float alpha) {
+		if (this.alpha != alpha) {
+			setAlpha(alpha);
+		}
+		
 		AffineTransform xform;
 		int w = tile.getWidth();
 		int h = tile.getHeight();
@@ -58,7 +63,7 @@ public class GraphicsTarget implements TileDrawTarget {
 	
 	public static BufferedImage createLayerRender(
 			TiledMapRenderer renderer, int layerindex, boolean applyOpacity) {
-		BufferedImage image = createEmptyMapImage(renderer.getMap());
+		BufferedImage image = createEmptyMapImage(renderer);
 		Graphics2D g = image.createGraphics();
 
 		g.setColor(     new Color(0, 0, 0, 0));
@@ -70,12 +75,10 @@ public class GraphicsTarget implements TileDrawTarget {
 		
 		return image;
 	}
-	
-	
 
 	public static BufferedImage createTileRender(
 			TiledMapRenderer renderer, int tileIndex, TileFlip flip) {
-		BufferedImage image = createEmptyTileImage(renderer.getMap());
+		BufferedImage image = createEmptyTileImage(renderer);
 		Graphics2D g = image.createGraphics();
 
 		g.setColor(     new Color(0, 0, 0, 0));
@@ -88,11 +91,13 @@ public class GraphicsTarget implements TileDrawTarget {
 		return image;
 	}
 	
-	public static BufferedImage createEmptyMapImage(TiledMap map) {
-		return createEmptyImage(map.getWidthInPixel(), map.getHeightInPixel());
+	public static BufferedImage createEmptyMapImage(TiledMapRenderer renderer) {
+		return createEmptyImage(renderer.getTargetAreaWidth(),
+				renderer.getTargetAreaHeight());
 	}
 	
-	public static BufferedImage createEmptyTileImage(TiledMap map) {
+	public static BufferedImage createEmptyTileImage(TiledMapRenderer renderer) {
+		TiledMap map = renderer.getMap();
 		return createEmptyImage(map.getTileWidth(), map.getTileHeight());
 	}
 	
@@ -102,19 +107,11 @@ public class GraphicsTarget implements TileDrawTarget {
 		return image;
 	}
 
-	@Override
-	public void setAlpha(float alpha) {
-		if (this.alpha != alpha) {
-			this.alpha = alpha;
-			this.comp = AlphaComposite.getInstance(
-					AlphaComposite.SRC_OVER, alpha);
-			g.setComposite(comp);
-		}
-	}
-
-	@Override
-	public float getAlpha() {
-		return alpha;
+	private void setAlpha(float alpha) {
+		this.alpha = alpha;
+		this.comp = AlphaComposite.getInstance(
+				AlphaComposite.SRC_OVER, alpha);
+		g.setComposite(comp);
 	}
 
 }

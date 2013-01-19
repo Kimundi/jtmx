@@ -106,7 +106,7 @@ public class Tileset {
 		
 	}
 	
-	public BufferedImage getImage() {
+	public BufferedImage getImageCopy() {
 		return Utils.deepCopy(image);
 	}
 

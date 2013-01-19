@@ -414,10 +414,6 @@ public class JTMXParser {
 			return points;
 		}
 	}
-
-	public static void main(String[] args) throws JTMXParseException, IOException {
-		JTMXDebugPrinter.main(args);
-	}
 	
 	private Properties extractProperties(Node node) 
 			throws XPathExpressionException {

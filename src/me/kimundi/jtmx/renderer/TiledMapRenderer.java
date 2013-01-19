@@ -16,14 +16,21 @@ import me.kimundi.jtmx.Tileset;
 import me.kimundi.jtmx.TilesetRef;
 
 public abstract class TiledMapRenderer {
-	protected final TiledMap map;
+	public static TiledMapRenderer createMatchingRenderer(TiledMap map) {
+		switch (map.getOrientation()) {
+		case ISOMETRIC:
+			return new IsometricRenderer(map);
+		case ORTHOGONAL:
+			return new OrthogonalRenderer(map);
+		default:
+			return null;		
+		}
+	}
 	protected final ImmutableList<Layer> layers;
-	protected final ImmutableMap<Integer, TilesetRef> tilesets;
+	protected final TiledMap map;
 	protected final BufferedImage[] tileimages;
 
-	public TiledMap getMap() {
-		return map;
-	}
+	protected final ImmutableMap<Integer, TilesetRef> tilesets;
 
 	public TiledMapRenderer(TiledMap map) {
 		this.map = map;
@@ -45,9 +52,25 @@ public abstract class TiledMapRenderer {
 		}
 	}
 
+	public TiledMap getMap() {
+		return map;
+	}
+
+	public abstract int getTargetAreaHeight();
+	
+	public abstract int getTargetAreaWidth();
+
+	public BufferedImage getTileImage(int index) {
+		return tileimages[index];
+	}
+
+	public BufferedImage[] getTileImages() {
+		return tileimages;
+	}
+	
 	private void loadTiles(BufferedImage[] tileimages, int gid,
 			TilesetRef tilesetref) {
-		BufferedImage image = tilesetref.getTileset().getImage();
+		BufferedImage image = tilesetref.getTileset().getImageCopy();
 
 		Tileset tileset = tilesetref.getTileset();
 
@@ -85,31 +108,28 @@ public abstract class TiledMapRenderer {
 		}
 
 	}
-
-	public abstract void renderLayer(int index, TileDrawTarget target,
-			boolean applyOpacity);
+	
+	public void renderLayer(int index, TileDrawTarget target,
+			boolean applyOpacity) {
+		Layer layer = layers.get(index);
+		if (!layer.isTileLayer()) { return; }
+		TileLayer tilelayer = layer.asTileLayer();
+		float opacity = layer.getOpacity();
+		float alpha;
+		if (applyOpacity) {
+			alpha = opacity;
+		} else {
+			alpha = 1;
+		}
+		renderTileLayer(tilelayer, target, alpha);
+	}
+	
+	public abstract void renderTileLayer(TileLayer tilelayer,
+			TileDrawTarget target, float alpha);
 	
 	public void renderTile(int index, TileDrawTarget target, TileFlip flip, 
 			int x, int y) {
-		target.drawTile(x, y, tileimages[index], flip);
-	}
-
-	public BufferedImage[] getTileImages() {
-		return tileimages;
-	}
-
-	public BufferedImage getTileImage(int index) {
-		return tileimages[index];
-	}
-	
-	public static TiledMapRenderer createMatchingRenderer(TiledMap map) {
-		switch (map.getOrientation()) {
-		case ISOMETRIC:
-			return new IsometricRenderer(map);
-		case ORTHOGONAL:
-			return new OrthogonalRenderer(map);
-		}
-		return null;
+		target.drawTile(x, y, tileimages[index], flip, 1);
 	}
 
 }

@@ -17,7 +17,7 @@ public class TileLayer extends Layer {
 		this.data = data.clone();
 	}
 
-	public int[] getRawData() {
+	public int[] getRawDataCopy() {
 		return data.clone();
 	}
 	
@@ -26,10 +26,10 @@ public class TileLayer extends Layer {
 	}
 	
 	public int getGid(int x, int y) {
-		return getGid(data, x, y, width, height);
+		return extractGid(data, x, y, width, height);
 	}
 
-	public static int getGid(int[] data, int x, int y, int width, int height) {
+	public static int extractGid(int[] data, int x, int y, int width, int height) {
 		if (x < 0 || width <= x || y < 0 || height <= y) {
 			throw new IllegalArgumentException("(x, y) lies outside the " +
 					"range denoted by width and height");
@@ -39,17 +39,17 @@ public class TileLayer extends Layer {
 		return (int)t;
 	}	
 	
-	private static int getGidRaw(long item) {
+	private static int extractGidRaw(long item) {
 		return (int)maskFlipBits(item);
 	}
 	
-	public static Tile getTile(int[] data, int x, int y, int width, int height) {
+	public static Tile extractTile(int[] data, int x, int y, int width, int height) {
 		long item = access(data, x, y, width, height);
-		return new Tile(getFlipRaw(item), getGidRaw(item));
+		return new Tile(extractFlipRaw(item), extractGidRaw(item));
 	}
 	
 	public Tile getTile(int x, int y) {
-		return getTile(data, x, y, width, height);
+		return extractTile(data, x, y, width, height);
 	}
 	
 	// TODO: Optimize to bit-maggioc switch statement
@@ -62,10 +62,10 @@ public class TileLayer extends Layer {
 	}
 	
 	public TileFlip getFlip(int x, int y) {
-		return getFlip(data, x, y, width, height);
+		return extractFlip(data, x, y, width, height);
 	}
 	
-	private static TileFlip getFlipRaw(long item) {
+	private static TileFlip extractFlipRaw(long item) {
 		long t = item;
 		if      (isSet(t, true,  true,  true ))
 			return TileFlip.HVD;
@@ -85,9 +85,9 @@ public class TileLayer extends Layer {
 			return TileFlip.NONE;
 	}
 	
-	public static TileFlip getFlip(int[] data, int x, int y, int width, int height) {
+	public static TileFlip extractFlip(int[] data, int x, int y, int width, int height) {
 		long t = access(data, x, y, width, height);
-		return getFlipRaw(t);
+		return extractFlipRaw(t);
 	}
 
 	public static long maskFlipBits(long value) {

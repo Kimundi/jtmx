@@ -208,7 +208,7 @@ public class JTMXDebugPrinter {
 	}
 	
 	private static void printTileLayer(int indent, TileLayer tilelayer) {
-		int[] data = tilelayer.getRawData();
+		int[] data = tilelayer.getRawDataCopy();
 		int radix = 10;
 		String pad;
 		{
