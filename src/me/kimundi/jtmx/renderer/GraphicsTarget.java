@@ -57,7 +57,7 @@ public class GraphicsTarget implements TileDrawTarget {
 	}
 	
 	public static BufferedImage createLayerRender(
-			TMXRenderer renderer, int layerindex, boolean applyOpacity) {
+			TiledMapRenderer renderer, int layerindex, boolean applyOpacity) {
 		BufferedImage image = createEmptyMapImage(renderer.getMap());
 		Graphics2D g = image.createGraphics();
 
@@ -74,7 +74,7 @@ public class GraphicsTarget implements TileDrawTarget {
 	
 
 	public static BufferedImage createTileRender(
-			TMXRenderer renderer, int tileIndex, TileFlip flip) {
+			TiledMapRenderer renderer, int tileIndex, TileFlip flip) {
 		BufferedImage image = createEmptyTileImage(renderer.getMap());
 		Graphics2D g = image.createGraphics();
 
@@ -83,7 +83,7 @@ public class GraphicsTarget implements TileDrawTarget {
 		
 		g.clearRect(0, 0, image.getWidth(), image.getHeight());
 
-		renderer.renderTile(tileIndex, new GraphicsTarget(g), flip);	
+		renderer.renderTile(tileIndex, new GraphicsTarget(g), flip, 0, 0);	
 		
 		return image;
 	}

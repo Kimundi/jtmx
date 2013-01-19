@@ -10,10 +10,11 @@ import me.kimundi.jtmx.TiledMap;
 import me.kimundi.jtmx.io.JTMXParseException;
 import me.kimundi.jtmx.io.JTMXParser;
 import me.kimundi.jtmx.renderer.GraphicsTarget;
-import me.kimundi.jtmx.renderer.TMXRenderer;
+import me.kimundi.jtmx.renderer.OrthogonalRenderer;
+import me.kimundi.jtmx.renderer.TiledMapRenderer;
 import me.kimundi.util.Utils;
 
-public class TMXDebugRender {
+public class JTMXDebugRender {
 
 	/**
 	 * @param args
@@ -37,7 +38,7 @@ public class TMXDebugRender {
 		
 		TiledMap map = tmxparser.parseTMX(tmxpath);
 		
-		TMXRenderer renderer = new TMXRenderer(map);
+		TiledMapRenderer renderer = TiledMapRenderer.createMatchingRenderer(map);
 		BufferedImage fullMapRender = GraphicsTarget.createEmptyMapImage(map);
 		GraphicsTarget g = new GraphicsTarget(fullMapRender.createGraphics());
 		

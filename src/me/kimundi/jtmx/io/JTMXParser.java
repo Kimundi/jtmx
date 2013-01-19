@@ -35,7 +35,7 @@ import me.kimundi.jtmx.TiledMapRef;
 import me.kimundi.jtmx.Tileset;
 import me.kimundi.jtmx.TilesetRef;
 import me.kimundi.jtmx.TilesetTile;
-import me.kimundi.jtmx.testing.TMXDebugPrinter;
+import me.kimundi.jtmx.testing.JTMXDebugPrinter;
 import me.kimundi.util.IntPoint;
 import me.kimundi.util.Properties;
 import me.kimundi.util.RGBColor;
@@ -416,7 +416,7 @@ public class JTMXParser {
 	}
 
 	public static void main(String[] args) throws JTMXParseException, IOException {
-		TMXDebugPrinter.main(args);
+		JTMXDebugPrinter.main(args);
 	}
 	
 	private Properties extractProperties(Node node) 

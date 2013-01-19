@@ -23,7 +23,7 @@ import me.kimundi.jtmx.io.JTMXParseException;
 import me.kimundi.jtmx.io.JTMXParser;
 import me.kimundi.util.IntPoint;
 
-public class TMXDebugPrinter {
+public class JTMXDebugPrinter {
 	private final static String IN = "  ";
 	
 	public static void main(String[] args) throws JTMXParseException, IOException{ 
