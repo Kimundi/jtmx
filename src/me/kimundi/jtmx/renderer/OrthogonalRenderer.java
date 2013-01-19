@@ -12,9 +12,13 @@ public class OrthogonalRenderer extends TiledMapRenderer{
 		super(map);
 	}
 
+	public OrthogonalRenderer(TiledMap map, RenderOptions options) {
+		super(map, options);
+	}
+
 	@Override
 	public void renderTileLayer(TileLayer tilelayer, TileDrawTarget target,
-			float alpha) {
+			int originX, int originY, float alpha) {
 		int tilewidth = map.getTileWidth();
 		int tileheight = map.getTileHeight();
 
@@ -24,7 +28,8 @@ public class OrthogonalRenderer extends TiledMapRenderer{
 				TileFlip flip = tilelayer.getFlip(x, y);
 				BufferedImage image = tileimages[gid];
 				if (image != null) {
-					target.drawTile(x * tilewidth, y * tileheight, image,
+					target.drawTile(originX + x * tilewidth, 
+							originY + y * tileheight, image,
 							flip, alpha);
 				}
 			}
@@ -32,12 +37,12 @@ public class OrthogonalRenderer extends TiledMapRenderer{
 	}
 
 	@Override
-	public int getTargetAreaWidth() {
+	public int getUnpaddedRenderWidth() {
 		return map.getWidthInPixel();
 	}
 
 	@Override
-	public int getTargetAreaHeight() {
+	public int getUnpaddedRenderHeight() {
 		return map.getHeightInPixel();
 	}
 

@@ -13,25 +13,37 @@ import me.kimundi.jtmx.TilesetRef;
 
 public abstract class TiledMapRenderer {
 	public static TiledMapRenderer createMatchingRenderer(TiledMap map) {
+		return createMatchingRenderer(map, RenderOptions.defaultOptions);
+	}
+	
+	public static TiledMapRenderer createMatchingRenderer(TiledMap map, 
+			RenderOptions options) {
 		switch (map.getOrientation()) {
 		case ISOMETRIC:
-			return new IsometricRenderer(map);
+			return new IsometricRenderer(map, options);
 		case ORTHOGONAL:
-			return new OrthogonalRenderer(map);
+			return new OrthogonalRenderer(map, options);
 		default:
 			return null;		
 		}
 	}
+	
 	protected final ImmutableList<Layer> layers;
 	protected final TiledMap map;
 	protected final BufferedImage[] tileimages;
 
 	protected final ImmutableMap<Integer, TilesetRef> tilesets;
-
+	protected final RenderOptions options;
+	
 	public TiledMapRenderer(TiledMap map) {
+		this(map, RenderOptions.defaultOptions);
+	}
+
+	public TiledMapRenderer(TiledMap map, RenderOptions options) {
 		this.map = map;
 		this.layers = map.getLayers();
 		this.tilesets = map.getTilesets();
+		this.options = options;
 
 		// Find size of tileimages;
 		int gidsize = 0;
@@ -52,9 +64,19 @@ public abstract class TiledMapRenderer {
 		return map;
 	}
 
-	public abstract int getTargetAreaHeight();
+	public abstract int getUnpaddedRenderHeight();
+	public abstract int getUnpaddedRenderWidth();
+
+	public int getRenderHeight() {
+		return getUnpaddedRenderHeight() 
+				+ options.topMargin + options.bottomMargin;
+	}
 	
-	public abstract int getTargetAreaWidth();
+	public int getRenderWidth() {
+		return getUnpaddedRenderWidth()
+				+ options.leftMargin + options.rightMargin;
+	}
+	
 
 	public BufferedImage getTileImage(int index) {
 		return tileimages[index];
@@ -108,20 +130,26 @@ public abstract class TiledMapRenderer {
 	public void renderLayer(int index, TileDrawTarget target,
 			boolean applyOpacity) {
 		Layer layer = layers.get(index);
-		if (!layer.isTileLayer()) { return; }
-		TileLayer tilelayer = layer.asTileLayer();
-		float opacity = layer.getOpacity();
-		float alpha;
-		if (applyOpacity) {
-			alpha = opacity;
-		} else {
-			alpha = 1;
+		if (layer.isTileLayer()) { 
+			TileLayer tilelayer = layer.asTileLayer();
+			float opacity = layer.getOpacity();
+			float alpha;
+			
+			if (applyOpacity) {
+				alpha = opacity;
+			} else {
+				alpha = 1;
+			}
+			
+			int originX = options.leftMargin + options.offsetX;
+			int originY = options.topMargin  + options.offsetY;
+			
+			renderTileLayer(tilelayer, target, originX, originY, alpha);
 		}
-		renderTileLayer(tilelayer, target, alpha);
 	}
 	
 	public abstract void renderTileLayer(TileLayer tilelayer,
-			TileDrawTarget target, float alpha);
+			TileDrawTarget target, int originX, int originY, float alpha);
 	
 	public void renderTile(int index, TileDrawTarget target, TileFlip flip, 
 			int x, int y) {

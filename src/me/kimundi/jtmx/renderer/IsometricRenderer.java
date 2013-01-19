@@ -12,8 +12,12 @@ public class IsometricRenderer extends TiledMapRenderer {
 		super(map);
 	}
 
+	public IsometricRenderer(TiledMap map, RenderOptions options) {
+		super(map, options);
+	}
+
 	@Override
-	public int getTargetAreaWidth() {
+	public int getUnpaddedRenderWidth() {
 		int width = map.getWidth();
 		int height = map.getHeight();
 		int tilewidth = map.getTileWidth();
@@ -22,7 +26,7 @@ public class IsometricRenderer extends TiledMapRenderer {
 	}
 
 	@Override
-	public int getTargetAreaHeight() {
+	public int getUnpaddedRenderHeight() {
 		int width = map.getWidth();
 		int height = map.getHeight();
 		int tileheight = map.getTileHeight();
@@ -32,7 +36,7 @@ public class IsometricRenderer extends TiledMapRenderer {
 
 	@Override
 	public void renderTileLayer(TileLayer tilelayer, TileDrawTarget target,
-			float alpha) {
+			int originX, int originY, float alpha) {
 		int tilewidth = map.getTileWidth();
 		int tileheight = map.getTileHeight();
 		int width = map.getWidth();
@@ -40,8 +44,8 @@ public class IsometricRenderer extends TiledMapRenderer {
 		
 		// The origin point of every tile to-be-drawn is the bottom-center
 		// of tile (0, 0) in *map*'s tilewidth and tileheight dimensions.
-		int pxlOriginX = getTargetAreaWidth() / 2;
-		int pxlOriginY = tileheight;
+		int pxlOriginX = originX + (getUnpaddedRenderWidth() / 2);
+		int pxlOriginY = originY + tileheight;
 		
 		int x = 0;
 		int y = 0;

@@ -92,8 +92,8 @@ public class GraphicsTarget implements TileDrawTarget {
 	}
 	
 	public static BufferedImage createEmptyMapImage(TiledMapRenderer renderer) {
-		return createEmptyImage(renderer.getTargetAreaWidth(),
-				renderer.getTargetAreaHeight());
+		return createEmptyImage(renderer.getRenderWidth(),
+				renderer.getRenderHeight());
 	}
 	
 	public static BufferedImage createEmptyTileImage(TiledMapRenderer renderer) {
