@@ -3,8 +3,9 @@ package me.kimundi.util;
 import java.util.HashMap;
 import static me.kimundi.util.TypeParser.*;
 
-// Need Immutable version
 public class Properties extends HashMap<String, String> {
+	private static final long serialVersionUID = -378763822176116789L;
+
 	public void setProperty(String key, String value) {
 		put(key, value);
 	}

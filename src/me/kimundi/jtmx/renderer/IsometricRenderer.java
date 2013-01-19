@@ -2,18 +2,14 @@ package me.kimundi.jtmx.renderer;
 
 import java.awt.image.BufferedImage;
 
-import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.TileFlip;
 import me.kimundi.jtmx.TileLayer;
 import me.kimundi.jtmx.TiledMap;
 
 public class IsometricRenderer extends TiledMapRenderer {
 
-	private OrthogonalRenderer ortho;
-	
 	public IsometricRenderer(TiledMap map) {
 		super(map);
-		ortho = new OrthogonalRenderer(map);
 	}
 
 	@Override
@@ -34,7 +30,6 @@ public class IsometricRenderer extends TiledMapRenderer {
 		return (height * tileheight)/2 + (width * tileheight)/2;
 	}
 
-
 	@Override
 	public void renderTileLayer(TileLayer tilelayer, TileDrawTarget target,
 			float alpha) {
@@ -44,7 +39,7 @@ public class IsometricRenderer extends TiledMapRenderer {
 		int height = map.getHeight();
 		
 		// The origin point of every tile to-be-drawn is the bottom-center
-		// of tile (0, 0) in *maps* tilewidth and tileheight dimensions.
+		// of tile (0, 0) in *map*'s tilewidth and tileheight dimensions.
 		int pxlOriginX = getTargetAreaWidth() / 2;
 		int pxlOriginY = tileheight;
 		
@@ -79,8 +74,6 @@ public class IsometricRenderer extends TiledMapRenderer {
 					target.drawTile(pxlX, pxlY, image, flip, alpha);
 				}
 			}
-			
-			
 
 			// Advance tiles in diagonal lines, starting from (0,0)
 			x += 1;

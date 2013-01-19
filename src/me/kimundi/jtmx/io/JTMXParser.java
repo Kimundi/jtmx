@@ -35,7 +35,6 @@ import me.kimundi.jtmx.TiledMapRef;
 import me.kimundi.jtmx.Tileset;
 import me.kimundi.jtmx.TilesetRef;
 import me.kimundi.jtmx.TilesetTile;
-import me.kimundi.jtmx.testing.JTMXDebugPrinter;
 import me.kimundi.util.IntPoint;
 import me.kimundi.util.Properties;
 import me.kimundi.util.RGBColor;

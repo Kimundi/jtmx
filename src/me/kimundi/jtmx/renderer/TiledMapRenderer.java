@@ -1,10 +1,6 @@
 package me.kimundi.jtmx.renderer;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 

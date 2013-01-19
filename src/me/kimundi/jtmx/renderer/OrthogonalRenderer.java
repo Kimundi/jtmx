@@ -2,7 +2,6 @@ package me.kimundi.jtmx.renderer;
 
 import java.awt.image.BufferedImage;
 
-import me.kimundi.jtmx.Layer;
 import me.kimundi.jtmx.TileFlip;
 import me.kimundi.jtmx.TileLayer;
 import me.kimundi.jtmx.TiledMap;
@@ -34,12 +33,12 @@ public class OrthogonalRenderer extends TiledMapRenderer{
 
 	@Override
 	public int getTargetAreaWidth() {
-		return map.getPixelWidth();
+		return map.getWidthInPixel();
 	}
 
 	@Override
 	public int getTargetAreaHeight() {
-		return map.getPixelHeight();
+		return map.getHeightInPixel();
 	}
 
 

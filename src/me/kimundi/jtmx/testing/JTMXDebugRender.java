@@ -10,7 +10,6 @@ import me.kimundi.jtmx.TiledMap;
 import me.kimundi.jtmx.io.JTMXParseException;
 import me.kimundi.jtmx.io.JTMXParser;
 import me.kimundi.jtmx.renderer.GraphicsTarget;
-import me.kimundi.jtmx.renderer.OrthogonalRenderer;
 import me.kimundi.jtmx.renderer.TiledMapRenderer;
 import me.kimundi.util.Utils;
 

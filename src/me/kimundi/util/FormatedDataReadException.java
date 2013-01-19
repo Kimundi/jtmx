@@ -1,9 +1,13 @@
 package me.kimundi.util;
 
-// TODO: Change to RuntimeException before Release
 public class FormatedDataReadException extends RuntimeException{
+	private static final long serialVersionUID = -1745905498939333378L;
+	
 	public FormatedDataReadException(String message, Throwable cause) {
-		super(message, cause); }
+		super(message, cause); 
+	}
+	
 	public FormatedDataReadException(String message) { 
-		super(message); }
+		super(message); 
+	}
 }
